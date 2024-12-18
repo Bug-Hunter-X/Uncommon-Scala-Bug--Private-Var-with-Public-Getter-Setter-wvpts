@@ -1,0 +1,22 @@
+```scala
+case class MyClass(name: String, var value: Int) {
+  def updateValue(newValue: Int): MyClass = {
+      if (newValue < 0) {
+          throw new IllegalArgumentException("Value cannot be negative")
+      }
+      copy(value = newValue)
+  }
+}
+
+object Main extends App {
+  var obj = MyClass("Object", 10)
+  println(obj.value) //prints 10
+  obj = obj.updateValue(15)
+  println(obj.value) //prints 15
+ try{
+  obj = obj.updateValue(-5) // throws IllegalArgumentException
+ } catch{
+  case e:IllegalArgumentException => println("Exception caught")
+ }
+}
+```
